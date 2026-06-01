@@ -1,0 +1,1 @@
+module.exports = { routes: [{ method: 'GET', path: '/project', handler: 'api::project.project.find', config: { auth: false } }, { method: 'GET', path: '/project/:id', handler: 'api::project.project.findOne', config: { auth: false } }] };
