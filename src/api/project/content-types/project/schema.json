@@ -4,36 +4,33 @@
   "info": {
     "singularName": "project",
     "pluralName": "projects",
-    "displayName": "Project"
+    "displayName": "Project",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string",
-      "required": true
-    },
-    "slug": {
-      "type": "string",
-      "unique": true
-    },
-    "tag": {
       "type": "string"
     },
     "shortDescription": {
       "type": "text"
     },
     "description": {
-      "type": "blocks"
-    },
-    "stack": {
-      "type": "json"
+      "type": "text"
     },
     "githubUrl": {
       "type": "string"
     },
     "liveUrl": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "tag": {
       "type": "string"
     }
   }
