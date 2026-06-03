@@ -533,19 +533,19 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     singularName: 'project';
     pluralName: 'projects';
     displayName: 'Project';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    slug: Schema.Attribute.String & Schema.Attribute.Unique;
-    tag: Schema.Attribute.String;
+    name: Schema.Attribute.String;
     shortDescription: Schema.Attribute.Text;
-    description: Schema.Attribute.Blocks;
-    stack: Schema.Attribute.JSON;
+    description: Schema.Attribute.Text;
     githubUrl: Schema.Attribute.String;
     liveUrl: Schema.Attribute.String;
+    slug: Schema.Attribute.String;
+    tag: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -558,6 +558,33 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::project.project'
     > &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSkillSkill extends Struct.CollectionTypeSchema {
+  collectionName: 'skills';
+  info: {
+    singularName: 'skill';
+    pluralName: 'skills';
+    displayName: 'skill';
+  };
+  options: {
+    comment: '';
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Schema.Attribute.Text;
+    group: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::skill.skill'> &
       Schema.Attribute.Private;
   };
 }
@@ -946,6 +973,7 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::contact.contact': ApiContactContact;
       'api::project.project': ApiProjectProject;
+      'api::skill.skill': ApiSkillSkill;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;
